@@ -1,10 +1,16 @@
 def split_number():
     with open ("data.txt", 'r') as f:
-        all_data = [x for x in f.read().split()]
-        length = len(all_data)//2
-        left_values = sorted([all_data[x] for x in length if x % 2 == 0])
-        right_values = sorted([all_data[x] for x in length if x % 2 != 0])
-        result = sum(left_values-right_values)
+        #open and split data as int
+        all_data = [int(x) for x in f.read().split()]
+        
+        #sort by even and odd index and sort
+        a = ([all_data[x] for x in range(0, len(all_data), 2)])
+        a = sorted(a)
+        
+        b= ([all_data[x] for x in range(1, len(all_data), 2)])
+        b = sorted(b)
+        #get abs value between numbers
+        result = sum([abs(a_i - b_i) for a_i, b_i in zip(a, b)])
         return (result)
 
 print(split_number())
